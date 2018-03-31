@@ -17,22 +17,22 @@ This opens a new terminal, and executes an optional command within an optional p
 $ term.sh COMMAND PROFILE
 ```
 
-## start-guard.sh
+## start-guard
 This checks for the existance of a Guardfile, and if present starts a terminal using `term.sh` and sets Guard away.
 
 If the Guardfile is not present, a message is displayed without starting a new terminal.
 
 ```
-$ start-guard.sh
+$ start-guard
 ```
 
-## start-rails.sh
+## start-rails
 This checks for the presence of a Gemfile.
 
 If present then the Code editor is started, Guard started in a separate terminal, and a browser opened with three windows - the Rails server, the code coverage summary, and the ERD.
 
 ```
-start-rails.sh
+start-rails
 ```
 
 ## Visual Studio Code
