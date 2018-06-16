@@ -5,7 +5,25 @@ if [ ! -f Gemfile ]; then
     exit 0
 fi
 
-start-guard.sh
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+   CMD=xterm -bg=white -fg=black
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+   platform='freebsd'
+   CMD=xterm -bg=white -fg=black
+elif [[ "$unamestr" == 'Darwin' ]]; then
+   # Probably OSX
+   platform='OSX'
+   CMD=term.sh
+fi
+
+start-guard
+
+if [ -f bin/extras ]; then
+  bin/extras
+fi
 
 code .
 
