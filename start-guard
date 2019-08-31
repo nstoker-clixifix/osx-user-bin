@@ -5,4 +5,4 @@ if [ ! -f ./Guardfile ]; then
     exit 0
 fi
 
-term.sh "cd $(PWD);bundle exec Guard"
+term.sh "export CODACY_RUN_LOCAL=true;export CODACY_PROJECT_TOKEN=2f2fa88c98d84ffd9e41f579e9de6704;cd $(PWD);rails db:environment:set RAILS_ENV=test;bundle exec Guard"

@@ -1,12 +1,5 @@
 #/bin/bash
 
-if [ ! -f Gemfile ]; then
-    echo "No Gemfile, aborting."
-    exit 0
-fi
-
-bundle install
-
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
@@ -21,12 +14,22 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
    CMD=term.sh
 fi
 
-start-guard
+TABS="http://localhost:3000"
 
-if [ -f bin/extras ]; then
-  bin/extras
+COVERAGE=./coverage/index.html
+
+if [ -f $COVERAGE ]; then
+  TABS="$TABS $COVERAGE"
 fi
 
-code .
+ERD=doc/erd.png
+if [ -f $ERD ]; then
+ TABS="$TABS $ERD"
+fi
 
-~/bin/start-firefox
+if [[ $platform == 'OSX' ]]; then
+  open -a firefox $TABS
+else
+  firefox $TABS
+fi
+
